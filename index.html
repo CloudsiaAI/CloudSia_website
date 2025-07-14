@@ -90,19 +90,36 @@
     </button>
   </div>
 
-  <!-- Mobile Nav Menu -->
-  <div id="mobileMenu" class="hidden md:hidden px-6 pb-4 text-sm bg-white border-t">
-    <a href="/research.html" class="block py-2">Research</a>
-    <a href="/safety.html" class="block py-2">Safety</a>
-    <a href="/business.html" class="block py-2">For Business</a>
-    <a href="/gpt.html" class="block py-2">GPT Model</a>
-    <a href="/products.html" class="block py-2">Products</a>
-    <a href="/sora.html" class="block py-2">Sora</a>
-    <a href="/api.html" class="block py-2">API Platform</a>
-    <a href="/blog/vision.html" class="block py-2">Stories</a>
-    <a href="/company.html" class="block py-2">Company</a>
-    <a href="/news.html" class="block py-2">News</a>
+  <!-- Mobile Nav Menu + Search -->
+<div id="mobileMenu" class="hidden md:hidden px-6 pb-4 text-sm bg-white border-t space-y-2">
+
+  <!-- Search bar for mobile -->
+  <div class="relative">
+    <input 
+      type="text" 
+      placeholder="Search..." 
+      class="pl-10 pr-4 py-2 w-full rounded-lg border text-sm focus:outline-none focus:ring"
+    />
+    <svg class="w-4 h-4 text-gray-500 absolute left-3 top-2.5" fill="none" stroke="currentColor" stroke-width="2"
+      viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round"
+        d="M21 21l-4.35-4.35M11 18a7 7 0 100-14 7 7 0 000 14z" />
+    </svg>
   </div>
+
+  <!-- Mobile Nav Links -->
+  <a href="/research.html" class="block py-2">Research</a>
+  <a href="/safety.html" class="block py-2">Safety</a>
+  <a href="/business.html" class="block py-2">For Business</a>
+  <a href="/gpt.html" class="block py-2">GPT Model</a>
+  <a href="/products.html" class="block py-2">Products</a>
+  <a href="/sora.html" class="block py-2">Sora</a>
+  <a href="/api.html" class="block py-2">API Platform</a>
+  <a href="/blog/vision.html" class="block py-2">Stories</a>
+  <a href="/company.html" class="block py-2">Company</a>
+  <a href="/news.html" class="block py-2">News</a>
+</div>
+  
 </header>
     
     <!-- Hero Section -->

@@ -210,5 +210,24 @@
   });
 </script>
 
+    <!-- Page Loader -->
+<div id="loader" class="fixed inset-0 bg-black text-white flex items-center justify-center text-2xl font-semibold z-50">
+  CloudSia
+</div>
+
+<script>
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    loader.classList.add('opacity-0');
+    setTimeout(() => loader.remove(), 500);
+  });
+</script>
+
+<style>
+  #loader {
+    transition: opacity 0.5s ease;
+  }
+</style>
+
   </body>
 </html>

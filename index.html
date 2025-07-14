@@ -2,76 +2,93 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CloudSia — AI for Education, Music & Content Creation</title>
-    <meta name="description" content="CloudSia builds accessible AI tools for educators, musicians, and creators. Explore AI-powered platforms made for everyone." /><!-- Open Graph -->
+    <title>CloudSia — AI for Everyone</title><!-- SEO Meta -->
+<meta name="description" content="CloudSia builds accessible AI tools for educators, musicians, and creators." />
+<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+<!-- Open Graph -->
 <meta property="og:title" content="CloudSia — AI for Everyone" />
 <meta property="og:description" content="AI tools for real-world creators, not just billion-dollar tech teams." />
-<meta property="og:image" content="https://cloudsía.com/og-image.jpg" />
-<meta property="og:url" https://cloudsía.com" />
+<meta property="og:url" content="https://www.xn--cloudsa-dza.com" />
 <meta property="og:type" content="website" />
 
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="CloudSia — AI that Empowers" />
-<meta name="twitter:description" content="Building AI tools for educators, musicians, and creators globally." />
-<meta name="twitter:image" content="https://cloudsía.com/og-image.jpg" />
-<link rel="icon" href="/favicon.ico" type="image/x-icon" />
-    
-<!-- Canonical -->
-<link rel="canonical" href="https://xn--cloudsa-dza.com" />
-
+<!-- Tailwind CSS + AOS Animation -->
 <script src="https://cdn.tailwindcss.com"></script>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<style>
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+  }
+</style>
 
   </head>
-  <body class="bg-white text-gray-900 font-sans">
-    <!-- Hero -->
-    <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 py-16">
-      <h1 class="text-4xl sm:text-6xl font-bold mb-4">CloudSia</h1>
-      <p class="text-xl sm:text-2xl max-w-2xl mb-8">
-        Building AI that empowers educators, musicians, and creators — not just billion-dollar tech companies.
+  <body class="overflow-x-hidden">
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col justify-center items-center px-6 text-center">
+      <h1 class="text-4xl sm:text-6xl font-bold leading-tight mb-4" data-aos="fade-up">
+        CloudSia — AI for Everyone
+      </h1>
+      <p class="text-lg sm:text-xl text-gray-700 max-w-2xl mb-6" data-aos="fade-up" data-aos-delay="100">
+        Building accessible AI tools for educators, musicians, and creators globally. No hype. Just helpful tech.
       </p>
-      <a href="#waitlist" class="bg-black text-white px-6 py-3 rounded-full text-lg hover:bg-gray-800 transition">Join the Waitlist</a>
-    </section><!-- What We Do -->
-<section class="bg-gray-100 py-16 px-6 text-center">
-  <h2 class="text-3xl font-semibold mb-6">What We’re Building</h2>
-  <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8">
-    <div>
-      <h3 class="text-xl font-semibold">Education AI</h3>
-      <p class="text-sm mt-2">Localized tools for teachers and students worldwide.</p>
-    </div>
-    <div>
-      <h3 class="text-xl font-semibold">Music AI</h3>
-      <p class="text-sm mt-2">Create music even without expensive tools or studios.</p>
-    </div>
-    <div>
-      <h3 class="text-xl font-semibold">Creator Tools</h3>
-      <p class="text-sm mt-2">Empowering everyday creators with content-ready AI.</p>
+      <a
+        href="#waitlist"
+        class="bg-black text-white px-6 py-3 rounded-full font-semibold hover:bg-gray-900 transition"
+        data-aos="fade-up"
+        data-aos-delay="200"
+      >
+        Join the Waitlist
+      </a>
+    </section><!-- Features Section -->
+<section class="py-16 px-6 bg-gray-100">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-3xl font-semibold mb-4" data-aos="fade-up">What We're Building</h2>
+    <p class="text-gray-600 mb-10" data-aos="fade-up" data-aos-delay="100">
+      AI tools designed for real-world needs: local classrooms, solo creators, and indie musicians.
+    </p>
+    <div class="grid sm:grid-cols-3 gap-8">
+      <div data-aos="fade-up" data-aos-delay="200">
+        <h3 class="font-bold text-xl mb-2">AI for Education</h3>
+        <p class="text-sm text-gray-600">Aligned with local curriculums. Helpful, not overwhelming.</p>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="300">
+        <h3 class="font-bold text-xl mb-2">Music & Voice Tools</h3>
+        <p class="text-sm text-gray-600">Generate, remix, or enhance your sound. No studio needed.</p>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="400">
+        <h3 class="font-bold text-xl mb-2">Content Creation</h3>
+        <p class="text-sm text-gray-600">Auto-generate videos, images & copy that feel personal.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Vision -->
-<section class="py-16 px-6 text-center">
-  <h2 class="text-3xl font-semibold mb-4">Our Vision</h2>
-  <p class="max-w-2xl mx-auto text-lg">
-    CloudSia is not just another AI company. We believe AI should serve people who need it most — teachers, musicians, and creators working with limited resources.
-  </p>
-</section>
-
-<!-- Waitlist CTA -->
-<section id="waitlist" class="bg-black text-white py-16 px-6 text-center">
-  <h2 class="text-3xl font-semibold mb-4">Join the Waitlist</h2>
-  <p class="mb-6">Be the first to get access when CloudSia launches.</p>
-  <form action="https://formspree.io/f/xkgbdzaz" method="POST" class="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto">
-    <input type="email" name="email" placeholder="Your email" required class="p-3 rounded w-full text-black" />
-    <button type="submit" class="bg-white text-black px-6 py-3 rounded hover:bg-gray-200 transition">Notify Me</button>
-  </form>
+<!-- Waitlist Form -->
+<section id="waitlist" class="py-20 px-6">
+  <div class="max-w-xl mx-auto text-center">
+    <h2 class="text-2xl font-semibold mb-4" data-aos="fade-up">Get Early Access</h2>
+    <p class="text-gray-600 mb-6" data-aos="fade-up" data-aos-delay="100">Be the first to try our tools when they launch.</p>
+    <form action="https://formspree.io/f/your-form-id" method="POST" class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="200">
+      <input type="email" name="email" required placeholder="Your email" class="border border-gray-300 rounded px-4 py-2 w-full sm:w-auto">
+      <button type="submit" class="bg-black text-white px-6 py-2 rounded hover:bg-gray-900 transition">
+        Notify Me
+      </button>
+    </form>
+  </div>
 </section>
 
 <!-- Footer -->
-<footer class="bg-gray-100 text-center py-8 text-sm text-gray-500">
+<footer class="py-6 text-center text-sm text-gray-500">
   © 2025 CloudSia. All rights reserved.
 </footer>
+
+<script>
+  AOS.init();
+</script>
 
   </body>
 </html>

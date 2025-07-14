@@ -45,58 +45,40 @@
   <body class="overflow-x-hidden">
 
 <!-- Full Header Navigation -->
-<header class="w-full sticky top-0 z-50 bg-white border-b">
+<!-- Header -->
+<header class="sticky top-0 z-50 w-full bg-white border-b">
   <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
 
     <!-- Logo -->
-    <a href="/" class="text-xl font-bold text-black">CloudSia</a>
+    <a href="/" class="text-2xl font-bold text-black">CloudSia</a>
 
     <!-- Desktop Nav -->
-    <nav class="hidden md:flex items-center gap-6 text-gray-600">
-      <a href="/research.html" class="flex flex-col items-center hover:text-black">
-        <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"
-          viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M12 6v6l4 2"></path>
-        </svg>
-        <span class="text-xs">Research</span>
-      </a>
-      <a href="/safety.html" class="flex flex-col items-center hover:text-black">
-        <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"
-          viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M12 2l9 4-9 4-9-4 9-4z" />
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M12 22V10" />
-        </svg>
-        <span class="text-xs">Safety</span>
-      </a>
-      <a href="/business.html" class="flex flex-col items-center hover:text-black">
-        <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"
-          viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M3 10h18M9 21V3m6 18V3" />
-        </svg>
-        <span class="text-xs">Business</span>
-      </a>
-      <a href="/chatgpt.html" class="flex flex-col items-center hover:text-black">
-        <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"
-          viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="10" />
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M8 12h8" />
-        </svg>
-        <span class="text-xs">ChatGPT</span>
-      </a>
-      <a href="/voice.html" class="flex flex-col items-center hover:text-black">
-        <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"
-          viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M12 4v8m0 0v4m0-4h4m-4 0H8" />
-        </svg>
-        <span class="text-xs">Voice</span>
-      </a>
+    <nav class="hidden md:flex gap-6 text-sm text-gray-700 font-medium">
+      <a href="/research.html" class="hover:text-black">Research</a>
+      <a href="/safety.html" class="hover:text-black">Safety</a>
+      <a href="/business.html" class="hover:text-black">For Business</a>
+      <a href="/gpt.html" class="hover:text-black">GPT Model</a>
+      <a href="/products.html" class="hover:text-black">Products</a>
+      <a href="/sora.html" class="hover:text-black">Sora</a>
+      <a href="/api.html" class="hover:text-black">API Platform</a>
+      <a href="/blog/vision.html" class="hover:text-black">Stories</a>
+      <a href="/company.html" class="hover:text-black">Company</a>
+      <a href="/news.html" class="hover:text-black">News</a>
     </nav>
+
+    <!-- Search Icon Bar -->
+    <div class="relative hidden md:block">
+      <input 
+        type="text" 
+        placeholder="Search..." 
+        class="pl-10 pr-4 py-2 rounded-lg border text-sm focus:outline-none focus:ring w-48"
+      />
+      <svg class="w-4 h-4 text-gray-500 absolute left-3 top-2.5" fill="none" stroke="currentColor" stroke-width="2"
+        viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M21 21l-4.35-4.35M11 18a7 7 0 100-14 7 7 0 000 14z" />
+      </svg>
+    </div>
 
     <!-- Mobile menu button -->
     <button id="mobileMenuBtn" class="md:hidden text-gray-600 focus:outline-none">
@@ -109,12 +91,17 @@
   </div>
 
   <!-- Mobile Nav Menu -->
-  <div id="mobileMenu" class="hidden flex-col md:hidden bg-white border-t px-6 pb-4 text-sm">
-    <a href="/research.html" class="py-2 block">Research</a>
-    <a href="/safety.html" class="py-2 block">Safety</a>
-    <a href="/business.html" class="py-2 block">Business</a>
-    <a href="/chatgpt.html" class="py-2 block">ChatGPT</a>
-    <a href="/voice.html" class="py-2 block">Voice</a>
+  <div id="mobileMenu" class="hidden md:hidden px-6 pb-4 text-sm bg-white border-t">
+    <a href="/research.html" class="block py-2">Research</a>
+    <a href="/safety.html" class="block py-2">Safety</a>
+    <a href="/business.html" class="block py-2">For Business</a>
+    <a href="/gpt.html" class="block py-2">GPT Model</a>
+    <a href="/products.html" class="block py-2">Products</a>
+    <a href="/sora.html" class="block py-2">Sora</a>
+    <a href="/api.html" class="block py-2">API Platform</a>
+    <a href="/blog/vision.html" class="block py-2">Stories</a>
+    <a href="/company.html" class="block py-2">Company</a>
+    <a href="/news.html" class="block py-2">News</a>
   </div>
 </header>
     
@@ -326,7 +313,7 @@
   btn.addEventListener("click", () => {
     menu.classList.toggle("hidden");
   });
-    </script>
+</script>
     
   </body>
 </html>

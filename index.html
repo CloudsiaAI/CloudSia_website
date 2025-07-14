@@ -43,7 +43,31 @@
       >
         Join the Waitlist
       </a>
-    </section><!-- Features Section -->
+    </section><!-- Product Preview Section -->
+<section class="py-20 px-6 bg-white">
+  <div class="max-w-6xl mx-auto text-center">
+    <h2 class="text-3xl font-semibold mb-6" data-aos="fade-up">AI Tools We're Building</h2>
+    <p class="text-gray-600 mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+      Our mission is to empower creators, educators, and musicians with intuitive, powerful AI that just works.
+    </p>
+    <div class="grid sm:grid-cols-3 gap-10">
+      <div class="p-6 border rounded-lg" data-aos="fade-up" data-aos-delay="200">
+        <h3 class="text-xl font-bold mb-2">Classroom GPT</h3>
+        <p class="text-sm text-gray-600">A smart assistant tailored to local curriculums. Helps teachers plan, simplify, and explain concepts clearly.</p>
+      </div>
+      <div class="p-6 border rounded-lg" data-aos="fade-up" data-aos-delay="300">
+        <h3 class="text-xl font-bold mb-2">VoiceCraft AI</h3>
+        <p class="text-sm text-gray-600">Generate voices, instruments, or mix audio with simple prompts. Built for indie musicians and podcasters.</p>
+      </div>
+      <div class="p-6 border rounded-lg" data-aos="fade-up" data-aos-delay="400">
+        <h3 class="text-xl font-bold mb-2">Content Studio</h3>
+        <p class="text-sm text-gray-600">Auto-create images, captions, and video clips for your social and brand — powered by contextual AI.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
 <section class="py-16 px-6 bg-gray-100">
   <div class="max-w-4xl mx-auto text-center">
     <h2 class="text-3xl font-semibold mb-4" data-aos="fade-up">What We're Building</h2>
@@ -72,23 +96,13 @@
   <div class="max-w-xl mx-auto text-center">
     <h2 class="text-2xl font-semibold mb-4" data-aos="fade-up">Get Early Access</h2>
     <p class="text-gray-600 mb-6" data-aos="fade-up" data-aos-delay="100">Be the first to try our tools when they launch.</p>
-    <form id="waitlist-form" action="https://formspree.io/f/xkgbdzaz" method="POST" class="flex flex-col sm:flex-row gap-4 justify-center">
-  <input
-    type="email"
-    name="email"
-    required
-    placeholder="Your email"
-    class="border border-gray-300 rounded px-4 py-2 w-full sm:w-auto"
-  />
-  <button
-    type="submit"
-    class="bg-black text-white px-6 py-2 rounded hover:bg-gray-900 transition"
-  >
-    Notify Me
-  </button>
-</form>
-
-<p id="form-status" class="text-green-600 mt-4 hidden">Thank you! We'll be in touch soon.</p>
+    <form id="waitlist-form" action="https://formspree.io/f/your-form-id" method="POST" class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="200">
+      <input type="email" name="email" required placeholder="Your email" class="border border-gray-300 rounded px-4 py-2 w-full sm:w-auto">
+      <button type="submit" class="bg-black text-white px-6 py-2 rounded hover:bg-gray-900 transition">
+        Notify Me
+      </button>
+    </form>
+    <p id="form-status" class="text-green-600 mt-4 hidden">Thank you! We'll be in touch soon.</p>
   </div>
 </section>
 
@@ -97,16 +111,15 @@
   © 2025 CloudSia. All rights reserved.
 </footer>
 
+<!-- Scripts -->
 <script>
   AOS.init();
-</script>
-<script>
+
   const form = document.getElementById('waitlist-form');
   const status = document.getElementById('form-status');
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-
     const formData = new FormData(form);
     const action = form.action;
 

@@ -6,86 +6,72 @@
   <title>Log in — CloudSia</title>
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Firebase SDK Setup (with Auth + Google login) -->
-<script type="module">
-  // Import Firebase SDK
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+  <!-- ✅ Firebase SDK & Logic -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-  // ✅ Your Firebase Config
-  const firebaseConfig = {
-    apiKey: "AIzaSyBfL-m6-9ZrC8iHrkvkhg0J84gvKq48Wb0",
-    authDomain: "cloudsia-b4a48.firebaseapp.com",
-    projectId: "cloudsia-b4a48",
-    storageBucket: "cloudsia-b4a48.appspot.com",
-    messagingSenderId: "170022287003",
-    appId: "1:170022287003:web:d0d1396043b4dc6e26383e",
-    measurementId: "G-QBTG9REFVT"
-  };
+    const firebaseConfig = {
+      apiKey: "AIzaSyBfL-m6-9ZrC8iHrkvkhg0J84gvKq48Wb0",
+      authDomain: "cloudsia-b4a48.firebaseapp.com",
+      projectId: "cloudsia-b4a48",
+      storageBucket: "cloudsia-b4a48.appspot.com",
+      messagingSenderId: "170022287003",
+      appId: "1:170022287003:web:d0d1396043b4dc6e26383e",
+      measurementId: "G-QBTG9REFVT"
+    };
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const provider = new GoogleAuthProvider();
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
 
-  // 🔐 Google login function
-  window.googleLogin = () => {
-    signInWithPopup(auth, provider)
-      .then(result => {
-        alert("Signed in with Google: " + result.user.email);
-        window.location.href = "/"; // redirect to home
-      })
-      .catch(error => {
-        alert("Google login error: " + error.message);
-      });
-  };
+    // Google login
+    window.googleLogin = () => {
+      signInWithPopup(auth, provider)
+        .then(result => {
+          alert("Logged in as: " + result.user.email);
+          window.location.href = "/";
+        })
+        .catch(err => alert("Google Login Error: " + err.message));
+    };
 
-  // 📧 Email login
-  window.emailLogin = (email, password) => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then(result => {
-        alert("Logged in: " + result.user.email);
-        window.location.href = "/";
-      })
-      .catch(error => {
-        alert("Login error: " + error.message);
-      });
-  };
-
-  // 🆕 Email signup
-  window.emailSignup = (email, password) => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(result => {
-        alert("Signed up: " + result.user.email);
-        window.location.href = "/";
-      })
-      .catch(error => {
-        alert("Signup error: " + error.message);
-      });
-  };
-</script>
-  
+    // Email login
+    window.emailLogin = () => {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      signInWithEmailAndPassword(auth, email, password)
+        .then(result => {
+          alert("Logged in as: " + result.user.email);
+          window.location.href = "/";
+        })
+        .catch(err => alert("Login Error: " + err.message));
+    };
+  </script>
 </head>
 <body class="bg-gray-50 flex items-center justify-center min-h-screen">
 
   <div class="w-full max-w-md p-8 bg-white shadow-md rounded-lg">
     <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">Log in to CloudSia</h1>
 
-    <form action="#" method="POST" class="space-y-4">
+    <form onsubmit="event.preventDefault(); emailLogin();" class="space-y-4">
       <div>
         <label class="block text-sm font-medium text-gray-700">Email</label>
-        <input type="email" required class="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+        <input id="email" type="email" required class="mt-1 w-full px-4 py-2 border rounded-md" />
       </div>
-
       <div>
         <label class="block text-sm font-medium text-gray-700">Password</label>
-        <input type="password" required class="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+        <input id="password" type="password" required class="mt-1 w-full px-4 py-2 border rounded-md" />
       </div>
-
-      <button type="submit" class="w-full bg-indigo-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-indigo-700 transition">
+      <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700">
         Log in
       </button>
     </form>
+
+    <div class="my-4 text-center text-sm text-gray-500">or</div>
+
+    <button onclick="googleLogin()" class="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600">
+      Continue with Google
+    </button>
 
     <p class="text-sm text-gray-600 mt-4 text-center">
       Don’t have an account? <a href="/signup.html" class="text-indigo-600 hover:underline">Sign up</a>

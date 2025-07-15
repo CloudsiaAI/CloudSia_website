@@ -40,6 +40,53 @@
   };
 </script>
 <link href="https://unpkg.com/@heroicons/vue@2.0.18/outline/index.css" rel="stylesheet">
+
+<!-- Firebase Auth UI Logic for Homepage -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBfL-m6-9ZrC8iHrkvkhg0J84gvKq48Wb0",
+    authDomain: "cloudsia-b4a48.firebaseapp.com",
+    projectId: "cloudsia-b4a48",
+    storageBucket: "cloudsia-b4a48.appspot.com",
+    messagingSenderId: "170022287003",
+    appId: "1:170022287003:web:d0d1396043b4dc6e26383e",
+    measurementId: "G-QBTG9REFVT"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // Listen to auth state
+  onAuthStateChanged(auth, (user) => {
+    const userBox = document.getElementById("userBox");
+    if (user) {
+      // User is logged in
+      userBox.innerHTML = `
+        <p class="text-sm text-gray-700">Welcome, <strong>${user.email}</strong></p>
+        <button onclick="logout()" class="mt-2 px-4 py-1 bg-red-500 text-white rounded hover:bg-red-600">
+          Logout
+        </button>
+      `;
+    } else {
+      // User is logged out
+      userBox.innerHTML = `
+        <a href="/login.html" class="text-sm text-indigo-600 hover:underline">Log in</a> or
+        <a href="/signup.html" class="text-sm text-indigo-600 hover:underline">Sign up</a>
+      `;
+    }
+  });
+
+  // Logout function
+  window.logout = () => {
+    signOut(auth).then(() => {
+      alert("Logged out!");
+      window.location.reload();
+    });
+  };
+</script>
     
   </head>
   <body class="overflow-x-hidden">

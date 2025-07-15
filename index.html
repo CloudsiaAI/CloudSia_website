@@ -316,22 +316,25 @@
   });
 </script>
 
-<!-- CTA Bar (Dismissible with top-right X) -->
-<div id="ctaBar" class="relative fixed bottom-0 inset-x-0 z-40 bg-white border-t shadow-md px-6 py-4 flex items-center justify-between flex-wrap gap-4">
-  
-  <!-- Close Button Top-Right -->
-  <button id="dismissCTA" class="absolute top-2 right-3 text-gray-400 hover:text-gray-600 text-xl leading-none">
-    &times;
-  </button>
+<!-- CTA Bar (Dismissible, Top-Right Close) -->
+<div id="ctaBar" class="fixed bottom-0 left-0 right-0 z-50 bg-white border-t shadow-lg">
+  <div class="relative max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-6 py-4 gap-4">
 
-  <!-- CTA Content -->
-  <p class="text-sm md:text-base text-gray-800 font-medium">
-    Get early access to CloudSia’s AI tools — made for creators, educators, and visionaries.
-  </p>
+    <!-- Close Button (top-right corner of the bar) -->
+    <button id="dismissCTA" class="absolute top-2 right-3 text-gray-400 hover:text-gray-600 text-2xl leading-none">
+      &times;
+    </button>
 
-  <a href="/signup.html" class="px-5 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition">
-    Sign up free
-  </a>
+    <!-- Text -->
+    <p class="text-sm md:text-base text-gray-800 font-medium text-center md:text-left">
+      Get early access to CloudSia’s AI tools — made for creators, educators, and visionaries.
+    </p>
+
+    <!-- CTA Button -->
+    <a href="/signup.html" class="px-5 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition">
+      Sign up free
+    </a>
+  </div>
 </div>
 
 <script>

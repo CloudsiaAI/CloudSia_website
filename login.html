@@ -6,49 +6,62 @@
   <title>Log in — CloudSia</title>
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Firebase SDK -->
+  <!-- Firebase SDK Setup (with Auth + Google login) -->
 <script type="module">
-  // Import Firebase Auth & Config
+  // Import Firebase SDK
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+  // ✅ Your Firebase Config
   const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    appId: "YOUR_APP_ID",
+    apiKey: "AIzaSyBfL-m6-9ZrC8iHrkvkhg0J84gvKq48Wb0",
+    authDomain: "cloudsia-b4a48.firebaseapp.com",
+    projectId: "cloudsia-b4a48",
+    storageBucket: "cloudsia-b4a48.appspot.com",
+    messagingSenderId: "170022287003",
+    appId: "1:170022287003:web:d0d1396043b4dc6e26383e",
+    measurementId: "G-QBTG9REFVT"
   };
 
+  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
 
-  // Google Login
+  // 🔐 Google login function
   window.googleLogin = () => {
     signInWithPopup(auth, provider)
       .then(result => {
-        alert("Signed in as: " + result.user.email);
-        // Redirect or handle session
+        alert("Signed in with Google: " + result.user.email);
+        window.location.href = "/"; // redirect to home
       })
-      .catch(error => alert(error.message));
+      .catch(error => {
+        alert("Google login error: " + error.message);
+      });
   };
 
-  // Email/Password Login
+  // 📧 Email login
   window.emailLogin = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
       .then(result => {
         alert("Logged in: " + result.user.email);
+        window.location.href = "/";
       })
-      .catch(error => alert(error.message));
+      .catch(error => {
+        alert("Login error: " + error.message);
+      });
   };
 
-  // Signup
+  // 🆕 Email signup
   window.emailSignup = (email, password) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then(result => {
         alert("Signed up: " + result.user.email);
+        window.location.href = "/";
       })
-      .catch(error => alert(error.message));
+      .catch(error => {
+        alert("Signup error: " + error.message);
+      });
   };
 </script>
   

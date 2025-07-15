@@ -316,15 +316,27 @@
   });
 </script>
 
-<!-- CTA Bar -->
-<div class="fixed bottom-0 inset-x-0 z-40 bg-white border-t shadow-md px-6 py-4 flex items-center justify-between flex-wrap gap-4">
+<!-- CTA Bar (Dismissible) -->
+<div id="ctaBar" class="fixed bottom-0 inset-x-0 z-40 bg-white border-t shadow-md px-6 py-4 flex items-center justify-between flex-wrap gap-4">
   <p class="text-sm md:text-base text-gray-800 font-medium">
     Get early access to CloudSia’s AI tools — made for creators, educators, and visionaries.
   </p>
-  <a href="/signup.html" class="px-5 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition">
-    Sign up free
-  </a>
+  <div class="flex items-center gap-4">
+    <a href="/signup.html" class="px-5 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition">
+      Sign up free
+    </a>
+    <button id="dismissCTA" class="text-gray-500 hover:text-gray-800 text-xl leading-none">&times;</button>
+  </div>
 </div>
+
+<script>
+  const ctaBar = document.getElementById('ctaBar');
+  const dismissBtn = document.getElementById('dismissCTA');
+
+  dismissBtn.addEventListener('click', () => {
+    ctaBar.style.display = 'none';
+  });
+</script>
     
   </body>
 </html>

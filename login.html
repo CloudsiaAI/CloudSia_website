@@ -5,6 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Log in — CloudSia</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Firebase SDK -->
+<script type="module">
+  // Import Firebase Auth & Config
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    appId: "YOUR_APP_ID",
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  // Google Login
+  window.googleLogin = () => {
+    signInWithPopup(auth, provider)
+      .then(result => {
+        alert("Signed in as: " + result.user.email);
+        // Redirect or handle session
+      })
+      .catch(error => alert(error.message));
+  };
+
+  // Email/Password Login
+  window.emailLogin = (email, password) => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then(result => {
+        alert("Logged in: " + result.user.email);
+      })
+      .catch(error => alert(error.message));
+  };
+
+  // Signup
+  window.emailSignup = (email, password) => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(result => {
+        alert("Signed up: " + result.user.email);
+      })
+      .catch(error => alert(error.message));
+  };
+</script>
+  
 </head>
 <body class="bg-gray-50 flex items-center justify-center min-h-screen">
 

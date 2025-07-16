@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -6,28 +7,165 @@
   <meta name="description" content="Stay updated on CloudSia's latest AI advancements, announcements, and innovations."/>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-white text-gray-900">  <!-- ✅ Reusable header + login/logout logic will be reused from other pages -->  <section class="py-20 px-6 text-center bg-gradient-to-b from-gray-50 to-white">
+<body class="bg-white text-gray-900">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 w-full bg-white border-b">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <a href="/" class="text-2xl font-bold text-black">CloudSia</a>
+      <nav class="hidden md:flex gap-6 text-sm text-gray-700 font-medium items-center">
+        <a href="/research.html">Research</a>
+        <a href="/safety.html">Safety</a>
+        <a href="/business.html">For Business</a>
+        <a href="/gpt.html">GPT Model</a>
+        <a href="/products.html">Products</a>
+        <a href="/sora.html">Sora</a>
+        <a href="/api.html">API Platform</a>
+        <a href="/blog/vision.html">Stories</a>
+        <a href="/company.html">Company</a>
+        <a href="/news.html" class="font-semibold text-black">News</a>
+      </nav>
+      <div id="authButtons" class="hidden md:flex items-center gap-4 text-sm text-gray-700"></div>
+      <button id="mobileMenuBtn" class="md:hidden text-gray-600 focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden px-6 pb-4 text-sm bg-white border-t space-y-2">
+      <a href="/research.html" class="block py-2">Research</a>
+      <a href="/safety.html" class="block py-2">Safety</a>
+      <a href="/business.html" class="block py-2">For Business</a>
+      <a href="/gpt.html" class="block py-2">GPT Model</a>
+      <a href="/products.html" class="block py-2">Products</a>
+      <a href="/sora.html" class="block py-2">Sora</a>
+      <a href="/api.html" class="block py-2">API Platform</a>
+      <a href="/blog/vision.html" class="block py-2">Stories</a>
+      <a href="/company.html" class="block py-2">Company</a>
+      <a href="/news.html" class="block py-2 font-semibold">News</a>
+      <div id="mobileAuth" class="space-y-2 pt-2 border-t"></div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="py-20 px-6 text-center bg-gradient-to-b from-gray-50 to-white">
     <div class="max-w-4xl mx-auto">
       <h1 class="text-4xl md:text-5xl font-bold mb-6">CloudSia News</h1>
       <p class="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto">
         The latest from our team on AI research, partnerships, and real-world launches.
       </p>
     </div>
-  </section>  <section class="py-16 px-6">
-    <div class="max-w-5xl mx-auto space-y-12"><article class="border-b pb-6">
-    <h2 class="text-2xl font-semibold text-indigo-700 mb-2">CloudSia launches LearnGPT for local education systems</h2>
-    <p class="text-sm text-gray-500 mb-2">Published July 14, 2025</p>
-    <p class="text-gray-700">Our new LearnGPT assistant is now available in beta, offering personalized AI tutoring aligned to national curricula. CloudSia aims to close learning gaps and support teachers with real-time feedback.</p>
-  </article>
+  </section>
 
-  <article class="border-b pb-6">
-    <h2 class="text-2xl font-semibold text-indigo-700 mb-2">Introducing CloudSia Music AI: Full studio power, zero cost</h2>
-    <p class="text-sm text-gray-500 mb-2">Published June 28, 2025</p>
-    <p class="text-gray-700">CloudSia Music is now open to all creators — allowing them to generate tracks, loops, and even lyrics using AI. Early users say it's already saving hours per week in music production.</p>
-  </article>
+  <!-- News Articles -->
+  <section class="py-16 px-6">
+    <div class="max-w-5xl mx-auto space-y-12">
+      <article class="border-b pb-6">
+        <h2 class="text-2xl font-semibold text-indigo-700 mb-2">CloudSia launches LearnGPT for local education systems</h2>
+        <p class="text-sm text-gray-500 mb-2">Published July 14, 2025</p>
+        <p class="text-gray-700">Our new LearnGPT assistant is now available in beta, offering personalized AI tutoring aligned to national curricula. CloudSia aims to close learning gaps and support teachers with real-time feedback.</p>
+      </article>
 
-  <article class="border-b pb-6">
-    <h2 class="text-2xl font-semibold text-indigo-700 mb-2">CloudSia partners with rural schools across Bangladesh</h2>
-    <p class="text-sm text-gray-500 mb
+      <article class="border-b pb-6">
+        <h2 class="text-2xl font-semibold text-indigo-700 mb-2">Introducing CloudSia Music AI: Full studio power, zero cost</h2>
+        <p class="text-sm text-gray-500 mb-2">Published June 28, 2025</p>
+        <p class="text-gray-700">CloudSia Music is now open to all creators — allowing them to generate tracks, loops, and even lyrics using AI. Early users say it's already saving hours per week in music production.</p>
+      </article>
 
-      
+      <article class="border-b pb-6">
+        <h2 class="text-2xl font-semibold text-indigo-700 mb-2">CloudSia partners with rural schools across Bangladesh</h2>
+        <p class="text-sm text-gray-500 mb-2">Published June 10, 2025</p>
+        <p class="text-gray-700">We've partnered with 50+ schools to deploy CloudSia's offline AI education kits, enabling quality learning experiences without internet access.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t bg-white py-8 px-6 text-center text-sm text-gray-500">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+      <p>© 2025 CloudSia. All rights reserved.</p>
+      <div class="flex flex-wrap gap-4 text-gray-600">
+        <a href="/privacy.html" class="hover:text-black">Privacy Policy</a>
+        <a href="/terms.html" class="hover:text-black">Terms of Service</a>
+        <a href="/sitemap.xml" class="hover:text-black">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Firebase Auth Logic -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBfL-m6-9ZrC8iHrkvkhg0J84gvKq48Wb0",
+      authDomain: "cloudsia-b4a48.firebaseapp.com",
+      projectId: "cloudsia-b4a48",
+      storageBucket: "cloudsia-b4a48.appspot.com",
+      messagingSenderId: "170022287003",
+      appId: "1:170022287003:web:d0d1396043b4dc6e26383e"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const authButtons = document.getElementById("authButtons");
+    const mobileAuth = document.getElementById("mobileAuth");
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    mobileMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const email = user.email;
+
+        if (authButtons) {
+          authButtons.innerHTML = `
+            <span class="text-sm text-gray-600">Hi, ${email}</span>
+            <button onclick="logout()" class="text-sm px-3 py-1 rounded bg-gray-200 hover:bg-gray-300">Logout</button>
+          `;
+        }
+
+        if (mobileAuth) {
+          mobileAuth.innerHTML = `
+            <div class="text-sm text-gray-700">Hi, ${email}</div>
+            <button onclick="logout()" class="block w-full text-center py-2 rounded bg-gray-200 hover:bg-gray-300">
+              Logout
+            </button>
+          `;
+        }
+      } else {
+        if (authButtons) {
+          authButtons.innerHTML = `
+            <a href="/login.html" class="text-sm text-gray-600 hover:text-black">Log in</a>
+            <a href="/signup.html" class="text-sm px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">Sign up</a>
+          `;
+        }
+
+        if (mobileAuth) {
+          mobileAuth.innerHTML = `
+            <a href="/login.html" class="block py-2 text-center font-semibold text-white bg-indigo-600 rounded hover:bg-indigo-700 transition">
+              Log in
+            </a>
+            <a href="/signup.html" class="block py-2 text-center font-semibold text-indigo-600 border border-indigo-600 rounded hover:bg-indigo-50 transition">
+              Sign up
+            </a>
+          `;
+        }
+      }
+    });
+
+    window.logout = () => {
+      signOut(auth).then(() => location.reload());
+    };
+  </script>
+
+</body>
+</html>

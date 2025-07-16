@@ -1,89 +1,161 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CloudSia Safety — Responsible AI for Everyone</title>
-    <meta name="description" content="CloudSia is committed to building responsible, transparent, and ethical AI systems that protect user safety and promote global access.">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.5/dist/tailwind.min.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Safety — CloudSia</title>
+  <meta name="description" content="CloudSia is committed to building safe, ethical AI systems for everyone."/>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-900">
 
-  <body class="bg-white text-gray-900">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 w-full bg-white border-b">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <a href="/" class="text-2xl font-bold text-black">CloudSia</a>
+      <nav class="hidden md:flex gap-6 text-sm text-gray-700 font-medium items-center">
+        <a href="/research.html">Research</a>
+        <a href="/safety.html" class="font-semibold text-black">Safety</a>
+        <a href="/business.html">For Business</a>
+        <a href="/gpt.html">GPT Model</a>
+        <a href="/products.html">Products</a>
+        <a href="/sora.html">Sora</a>
+        <a href="/api.html">API Platform</a>
+        <a href="/blog/vision.html">Stories</a>
+        <a href="/company.html">Company</a>
+        <a href="/news.html">News</a>
+      </nav>
+      <div id="authButtons" class="hidden md:flex items-center gap-4 text-sm text-gray-700"></div>
+      <button id="mobileMenuBtn" class="md:hidden text-gray-600 focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden px-6 pb-4 text-sm bg-white border-t space-y-2">
+      <a href="/research.html" class="block py-2">Research</a>
+      <a href="/safety.html" class="block py-2 font-semibold">Safety</a>
+      <a href="/business.html" class="block py-2">For Business</a>
+      <a href="/gpt.html" class="block py-2">GPT Model</a>
+      <a href="/products.html" class="block py-2">Products</a>
+      <a href="/sora.html" class="block py-2">Sora</a>
+      <a href="/api.html" class="block py-2">API Platform</a>
+      <a href="/blog/vision.html" class="block py-2">Stories</a>
+      <a href="/company.html" class="block py-2">Company</a>
+      <a href="/news.html" class="block py-2">News</a>
+      <div id="mobileAuth" class="space-y-2 pt-2 border-t"></div>
+    </div>
+  </header>
 
-    <!-- Header -->
-    <header class="sticky top-0 z-50 w-full bg-white border-b shadow-sm">
-      <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-        <a href="/" class="text-2xl font-bold text-black">CloudSia</a>
-        <nav class="hidden md:flex gap-6 text-sm text-gray-700 font-medium items-center">
-          <a href="/research.html">Research</a>
-          <a href="/safety.html" class="text-black font-semibold">Safety</a>
-          <a href="/business.html">For Business</a>
-          <a href="/gpt.html">GPT Model</a>
-          <a href="/products.html">Products</a>
-          <a href="/sora.html">Sora</a>
-          <a href="/api.html">API Platform</a>
-          <a href="/blog/vision.html">Stories</a>
-          <a href="/company.html">Company</a>
-          <a href="/news.html">News</a>
-        </nav>
+  <!-- Hero Section -->
+  <section class="py-20 px-6 text-center bg-gradient-to-b from-red-50 to-white">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">AI Safety at CloudSia</h1>
+      <p class="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto">
+        We prioritize safety, transparency, and accountability in all of our AI systems.
+      </p>
+    </div>
+  </section>
+
+  <!-- Safety Commitments -->
+  <section class="py-16 px-6">
+    <div class="max-w-5xl mx-auto space-y-16">
+      <div>
+        <h2 class="text-2xl font-semibold text-red-600 mb-4">Human-Centered Design</h2>
+        <p class="text-gray-700">We engage with educators, creators, and communities to ensure our AI systems serve real-world needs and reduce harm.</p>
       </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="py-20 px-6 bg-gradient-to-b from-gray-50 to-white">
-      <div class="max-w-5xl mx-auto text-center">
-        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">AI Safety at CloudSia</h1>
-        <p class="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
-          CloudSia is committed to building AI that is not just powerful, but safe, fair, and globally accessible. Our safety efforts are deeply integrated into every step of development.
-        </p>
+      <div>
+        <h2 class="text-2xl font-semibold text-red-600 mb-4">Robust Safeguards</h2>
+        <p class="text-gray-700">CloudSia implements safety filters, moderation layers, and bias mitigation techniques across all models.</p>
       </div>
-    </section>
-
-    <!-- Core Principles -->
-    <section class="py-16 px-6 bg-white">
-      <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-10">
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-2">Transparency</h3>
-          <p class="text-gray-600">We share our research openly, explain our models clearly, and avoid black-box systems when possible. Users should understand how our AI works.</p>
-        </div>
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-2">Bias & Fairness</h3>
-          <p class="text-gray-600">We actively test our AI for bias, particularly in education and language tasks, and design systems that support underrepresented communities.</p>
-        </div>
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-2">Privacy & Consent</h3>
-          <p class="text-gray-600">User data is never used without permission. CloudSia tools are designed with strict privacy standards, especially for educational environments.</p>
-        </div>
+      <div>
+        <h2 class="text-2xl font-semibold text-red-600 mb-4">Transparent Research</h2>
+        <p class="text-gray-700">We publish safety findings and welcome academic collaboration to continuously improve safety benchmarks.</p>
       </div>
-    </section>
-
-    <!-- Our Commitments -->
-    <section class="py-20 px-6 bg-gray-50">
-      <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-3xl font-bold mb-4">We Don’t Just Build AI — We Protect It</h2>
-        <p class="text-gray-700 text-lg">
-          From misuse prevention to model alignment, CloudSia is building safeguards for the real world. We work closely with educators, artists, and ethical experts to shape our roadmap.
-        </p>
+      <div>
+        <h2 class="text-2xl font-semibold text-red-600 mb-4">Age-Appropriate Controls</h2>
+        <p class="text-gray-700">We ensure different age groups receive filtered, safe, and appropriate AI responses with adjustable control settings.</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Safety Roadmap -->
-    <section class="py-16 px-6">
-      <div class="max-w-4xl mx-auto">
-        <h2 class="text-2xl font-bold mb-4">What We're Working On</h2>
-        <ul class="list-disc pl-5 text-gray-700 space-y-2">
-          <li>⚖️ Fairness evaluations across multilingual datasets</li>
-          <li>🔐 Encrypted model access for schools & NGOs</li>
-          <li>📚 Context-aware moderation for educational content</li>
-          <li>🛠️ Researching low-resource safety fine-tuning methods</li>
-        </ul>
+  <!-- Footer -->
+  <footer class="border-t bg-white py-8 px-6 text-center text-sm text-gray-500">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+      <p>© 2025 CloudSia. All rights reserved.</p>
+      <div class="flex flex-wrap gap-4 text-gray-600">
+        <a href="/privacy.html" class="hover:text-black">Privacy Policy</a>
+        <a href="/terms.html" class="hover:text-black">Terms of Service</a>
+        <a href="/sitemap.xml" class="hover:text-black">Sitemap</a>
       </div>
-    </section>
+    </div>
+  </footer>
 
-    <!-- Footer -->
-    <footer class="border-t py-6 px-6 text-center text-sm text-gray-500">
-      © 2025 CloudSia. All rights reserved.
-    </footer>
-  </body>
-  </html>
+  <!-- Firebase Auth Logic -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBfL-m6-9ZrC8iHrkvkhg0J84gvKq48Wb0",
+      authDomain: "cloudsia-b4a48.firebaseapp.com",
+      projectId: "cloudsia-b4a48",
+      storageBucket: "cloudsia-b4a48.appspot.com",
+      messagingSenderId: "170022287003",
+      appId: "1:170022287003:web:d0d1396043b4dc6e26383e"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const authButtons = document.getElementById("authButtons");
+    const mobileAuth = document.getElementById("mobileAuth");
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    mobileMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const email = user.email;
+        if (authButtons) {
+          authButtons.innerHTML = `
+            <span class="text-sm text-gray-600">Hi, ${email}</span>
+            <button onclick="logout()" class="text-sm px-3 py-1 rounded bg-gray-200 hover:bg-gray-300">Logout</button>
+          `;
+        }
+        if (mobileAuth) {
+          mobileAuth.innerHTML = `
+            <div class="text-sm text-gray-700">Hi, ${email}</div>
+            <button onclick="logout()" class="block w-full text-center py-2 rounded bg-gray-200 hover:bg-gray-300">Logout</button>
+          `;
+        }
+      } else {
+        if (authButtons) {
+          authButtons.innerHTML = `
+            <a href="/login.html" class="text-sm text-gray-600 hover:text-black">Log in</a>
+            <a href="/signup.html" class="text-sm px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">Sign up</a>
+          `;
+        }
+        if (mobileAuth) {
+          mobileAuth.innerHTML = `
+            <a href="/login.html" class="block py-2 text-center font-semibold text-white bg-indigo-600 rounded hover:bg-indigo-700 transition">Log in</a>
+            <a href="/signup.html" class="block py-2 text-center font-semibold text-indigo-600 border border-indigo-600 rounded hover:bg-indigo-50 transition">Sign up</a>
+          `;
+        }
+      }
+    });
+
+    window.logout = () => {
+      signOut(auth).then(() => location.reload());
+    };
+  </script>
+
+</body>
+</html>

@@ -12,7 +12,10 @@
     <!-- Header -->
     <header class="sticky top-0 z-50 w-full bg-white border-b">
       <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+        <!-- Logo -->
         <a href="/" class="text-2xl font-bold text-black">CloudSia</a>
+
+        <!-- Desktop Nav -->
         <nav class="hidden md:flex gap-6 text-sm text-gray-700 font-medium items-center">
           <a href="/research.html">Research</a>
           <a href="/safety.html">Safety</a>
@@ -25,10 +28,38 @@
           <a href="/company.html">Company</a>
           <a href="/news.html">News</a>
         </nav>
+
+        <!-- Auth buttons -->
+        <div id="authButtons" class="hidden md:flex gap-4 items-center"></div>
+
+        <!-- Mobile menu button -->
+        <button id="mobileMenuBtn" class="md:hidden text-gray-600 focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="hidden md:hidden px-6 pb-4 text-sm bg-white border-t space-y-2">
+        <a href="/research.html" class="block py-2">Research</a>
+        <a href="/safety.html" class="block py-2">Safety</a>
+        <a href="/business.html" class="block py-2">For Business</a>
+        <a href="/gpt.html" class="block py-2">GPT Model</a>
+        <a href="/products.html" class="block py-2">Products</a>
+        <a href="/sora.html" class="block py-2">Sora</a>
+        <a href="/api.html" class="block py-2">API Platform</a>
+        <a href="/blog/vision.html" class="block py-2 font-semibold">Stories</a>
+        <a href="/company.html" class="block py-2">Company</a>
+        <a href="/news.html" class="block py-2">News</a>
+        <a href="/login.html" class="block py-2 text-center font-semibold text-white bg-indigo-600 rounded hover:bg-indigo-700 transition">Log in</a>
+        <a href="/signup.html" class="block py-2 text-center font-semibold text-indigo-600 border border-indigo-600 rounded hover:bg-indigo-50 transition">Sign up</a>
       </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="py-20 px-6 bg-gradient-to-b from-gray-50 to-white text-center">
       <div class="max-w-4xl mx-auto">
         <h1 class="text-4xl md:text-5xl font-bold mb-6">Why We Started CloudSia</h1>
@@ -38,7 +69,7 @@
       </div>
     </section>
 
-    <!-- Story Section -->
+    <!-- Content -->
     <section class="py-16 px-6 bg-white">
       <div class="max-w-3xl mx-auto text-gray-800 text-base space-y-6 leading-relaxed">
         <p>
@@ -60,7 +91,7 @@
       </div>
     </section>
 
-    <!-- CTA Section -->
+    <!-- CTA -->
     <section class="py-16 px-6 bg-gray-50 text-center">
       <h2 class="text-2xl font-bold mb-4">Join our mission.</h2>
       <p class="text-gray-600 mb-6">Sign up and help us build AI that empowers everyone.</p>
@@ -70,9 +101,63 @@
     </section>
 
     <!-- Footer -->
-    <footer class="border-t py-6 px-6 text-center text-sm text-gray-500">
-      © 2025 CloudSia. All rights reserved.
+    <footer class="border-t bg-white py-8 px-6 text-center text-sm text-gray-500">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+        <p>© 2025 CloudSia. All rights reserved.</p>
+        <div class="flex flex-wrap gap-4 text-gray-600">
+          <a href="/privacy.html" class="hover:text-black">Privacy Policy</a>
+          <a href="/terms.html" class="hover:text-black">Terms of Service</a>
+          <a href="/sitemap.xml" class="hover:text-black">Sitemap</a>
+        </div>
+      </div>
     </footer>
+
+    <!-- Firebase Auth State Handler -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+      import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyBfL-m6-9ZrC8iHrkvkhg0J84gvKq48Wb0",
+        authDomain: "cloudsia-b4a48.firebaseapp.com",
+        projectId: "cloudsia-b4a48",
+        storageBucket: "cloudsia-b4a48.appspot.com",
+        messagingSenderId: "170022287003",
+        appId: "1:170022287003:web:d0d1396043b4dc6e26383e"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      const authButtons = document.getElementById("authButtons");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const mobileBtn = document.getElementById("mobileMenuBtn");
+
+      // Toggle mobile menu
+      mobileBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      // Auth state change
+      onAuthStateChanged(auth, (user) => {
+        if (authButtons) {
+          authButtons.innerHTML = user ? `
+            <span class="text-sm text-gray-700">Hello, ${user.email}</span>
+            <button onclick="logout()" class="text-sm px-3 py-1 rounded bg-gray-200 hover:bg-gray-300">Logout</button>
+          ` : `
+            <a href="/login.html" class="text-sm text-gray-600 hover:text-black">Log in</a>
+            <a href="/signup.html" class="text-sm px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">Sign up</a>
+          `;
+        }
+      });
+
+      // Logout
+      window.logout = () => {
+        auth.signOut().then(() => {
+          location.reload();
+        });
+      };
+    </script>
 
   </body>
 </html>

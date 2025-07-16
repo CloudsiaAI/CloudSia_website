@@ -367,14 +367,16 @@
   const ctaBar = document.getElementById("ctaBar");
 
   onAuthStateChanged(auth, (user) => {
-    // 🔁 Update CTA bar visibility
-    if (ctaBar) {
-      if (user) {
-        ctaBar.style.display = "none"; // Hide if logged in
-      } else {
-        ctaBar.style.display = "flex"; // Show if not
-      }
+  const ctaBar = document.getElementById("ctaBar");
+
+  // ✅ CTA logic (final version)
+  if (ctaBar) {
+    if (user || localStorage.getItem("ctaDismissed") === "true") {
+      ctaBar.style.display = "none";
+    } else {
+      ctaBar.style.display = "flex";
     }
+  }
 
     // 🔁 Update auth buttons (desktop)
     if (desktopBox) {
@@ -403,10 +405,11 @@
     });
   };
 
-  // ❌ CTA Dismiss Button Logic
-  document.getElementById("dismissCTA")?.addEventListener("click", () => {
-    document.getElementById("ctaBar").style.display = "none";
-  });
+  const dismissBtn = document.getElementById("dismissCTA");
+dismissBtn?.addEventListener("click", () => {
+  localStorage.setItem("ctaDismissed", "true");
+  document.getElementById("ctaBar").style.display = "none";
+});
 </script>
     
   </body>

@@ -29,7 +29,6 @@
     window.googleLogin = () => {
       signInWithPopup(auth, provider)
         .then(result => {
-          alert("Signed in as: " + result.user.email);
           window.location.href = "/";
         })
         .catch(err => alert("Google Sign-up Error: " + err.message));
@@ -41,7 +40,6 @@
       const password = document.getElementById("password").value;
       createUserWithEmailAndPassword(auth, email, password)
         .then(result => {
-          alert("Signed up as: " + result.user.email);
           window.location.href = "/";
         })
         .catch(err => alert("Sign-up Error: " + err.message));

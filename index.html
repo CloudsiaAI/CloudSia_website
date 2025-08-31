@@ -42,7 +42,12 @@
 <link href="https://unpkg.com/@heroicons/vue@2.0.18/outline/index.css" rel="stylesheet">
     
   </head>
-  <body class="overflow-x-hidden">
+<body class="bg-black text-white antialiased selection:bg-indigo-500/30 selection:text-white">
+
+  <!-- Starfield background -->
+<canvas id="starfield" class="fixed inset-0 -z-10"></canvas>
+<!-- Soft vertical tint (adds depth) -->
+<div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 bg-gradient-to-b from-gray-900/20 to-black"></div>
     
 <!-- Header -->
 <header class="sticky top-0 z-50 w-full bg-white border-b">
@@ -432,6 +437,45 @@ dismissBtn?.addEventListener("click", () => {
 <div id="toast" class="fixed bottom-6 right-6 bg-gray-900 text-white text-sm px-4 py-2 rounded shadow-md opacity-0 transition-opacity duration-300 pointer-events-none z-50">
   Logged out successfully
 </div>
-    
+
+  <script>
+(() => {
+  const c = document.getElementById('starfield');
+  if (!c) return;
+  const ctx = c.getContext('2d');
+
+  function resize() {
+    c.width = window.innerWidth;
+    c.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize, { passive: true });
+  resize();
+
+  const N = 200; // number of stars
+  const stars = Array.from({ length: N }, () => ({
+    x: Math.random() * c.width,
+    y: Math.random() * c.height,
+    z: Math.random() * 0.5 + 0.5,     // depth factor (affects speed)
+    r: Math.random() * 1.2 + 0.4      // radius
+  }));
+
+  function tick() {
+    ctx.clearRect(0, 0, c.width, c.height);
+    ctx.fillStyle = 'rgba(255,255,255,0.9)';
+    for (const s of stars) {
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fill();
+      s.y += (0.15 + s.z * 0.6);      // fall speed
+      if (s.y > c.height) {
+        s.y = -2;
+        s.x = Math.random() * c.width;
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+  </script>
   </body>
 </html>

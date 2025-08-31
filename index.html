@@ -42,13 +42,20 @@
 <link href="https://unpkg.com/@heroicons/vue@2.0.18/outline/index.css" rel="stylesheet">
     
   </head>
-<body class="bg-black text-white antialiased selection:bg-indigo-500/30 selection:text-white">
+<body class="bg-gradient-to-b from-[#020617] via-[#071532] to-[#00040a] text-white antialiased selection:bg-indigo-500/30">
 
-  <!-- Starfield background -->
+  <!-- Starfield background (updated) -->
 <canvas id="starfield" class="fixed inset-0 -z-10"></canvas>
-<!-- Soft vertical tint (adds depth) -->
-<div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 bg-gradient-to-b from-gray-900/20 to-black"></div>
-    
+
+<!-- Nebula / tint overlay to get the blue/purple vibe -->
+<div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10">
+  <div style="position:absolute; inset:0; background:
+       radial-gradient(800px 400px at 20% 20%, rgba(59,130,246,0.06), transparent 10%),
+       radial-gradient(700px 350px at 80% 70%, rgba(139,92,246,0.045), transparent 15%);
+    mix-blend-mode: screen;"></div>
+  <div style="position:absolute; inset:0; background: linear-gradient(180deg, rgba(3,8,23,0.35), rgba(0,0,0,0.6));"></div>
+</div>
+  
 <!-- Header -->
 <header class="sticky top-0 z-50 w-full bg-white border-b">
   <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
@@ -431,51 +438,192 @@ dismissBtn?.addEventListener("click", () => {
   localStorage.setItem("ctaDismissed", "true");
   document.getElementById("ctaBar").style.display = "none";
 });
-</script>
-
-    <!-- Toast Message -->
-<div id="toast" class="fixed bottom-6 right-6 bg-gray-900 text-white text-sm px-4 py-2 rounded shadow-md opacity-0 transition-opacity duration-300 pointer-events-none z-50">
-  Logged out successfully
-</div>
-
-  <script>
+<script>
 (() => {
   const c = document.getElementById('starfield');
   if (!c) return;
   const ctx = c.getContext('2d');
 
+  // Retina support
   function resize() {
-    c.width = window.innerWidth;
-    c.height = window.innerHeight;
+    const dpr = Math.max(1, window.devicePixelRatio || 1);
+    c.width = Math.floor(window.innerWidth * dpr);
+    c.height = Math.floor(window.innerHeight * dpr);
+    c.style.width = window.innerWidth + 'px';
+    c.style.height = window.innerHeight + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
   window.addEventListener('resize', resize, { passive: true });
   resize();
 
-  const N = 200; // number of stars
-  const stars = Array.from({ length: N }, () => ({
-    x: Math.random() * c.width,
-    y: Math.random() * c.height,
-    z: Math.random() * 0.5 + 0.5,     // depth factor (affects speed)
-    r: Math.random() * 1.2 + 0.4      // radius
-  }));
+  // Config — tune these to taste
+  const SMALL_COUNT = 60;    // faint twinklers
+  const MEDIUM_COUNT = 18;   // glowy stars
+  const SPARK_COUNT = 6;     // occasional larger sparks
+  const SHOOT_CHANCE = 0.002; // chance per frame to spawn a shooting star
 
+  // Utility
+  function rand(min, max) { return Math.random() * (max - min) + min; }
+
+  // Layers
+  const small = [];
+  const medium = [];
+  const sparks = [];
+  const shoots = [];
+
+  const W = () => c.width / (window.devicePixelRatio || 1);
+  const H = () => c.height / (window.devicePixelRatio || 1);
+
+  // Create stars
+  function createSmall() {
+    return {
+      x: rand(0, W()), y: rand(0, H()),
+      r: rand(0.2, 0.9),
+      vx: rand(-0.12, -0.02),   // slow left drift
+      vy: rand(0.02, 0.12),     // slow downward
+      tw: rand(0.6, 1.6),       // twinkle speed
+      phase: rand(0, Math.PI*2),
+      alphaBase: rand(0.2, 0.9)
+    };
+  }
+  function createMedium() {
+    return {
+      x: rand(0, W()), y: rand(0, H()),
+      r: rand(0.9, 2.2),
+      vx: rand(-0.08, -0.01),
+      vy: rand(0.03, 0.10),
+      pulse: rand(0.01, 0.06)
+    };
+  }
+  function createSpark() {
+    return {
+      x: rand(0, W()), y: rand(0, H()),
+      r: rand(1.8, 3.5),
+      vx: rand(-0.06, -0.01),
+      vy: rand(0.03, 0.08),
+      life: 0, maxLife: rand(180, 360)
+    };
+  }
+
+  for (let i=0;i<SMALL_COUNT;i++) small.push(createSmall());
+  for (let i=0;i<MEDIUM_COUNT;i++) medium.push(createMedium());
+  for (let i=0;i<SPARK_COUNT;i++) sparks.push(createSpark());
+
+  // Shooting star factory
+  function spawnShoot() {
+    const startX = rand(W()*0.2, W()*0.95);
+    const startY = rand(H()*0.02, H()*0.4);
+    shoots.push({
+      x: startX, y: startY,
+      vx: -rand(6,12), vy: rand(2,5),
+      len: rand(80, 240),
+      life: 0, ttl: rand(40, 80)
+    });
+  }
+
+  // Animation loop
+  let t = 0;
   function tick() {
-    ctx.clearRect(0, 0, c.width, c.height);
-    ctx.fillStyle = 'rgba(255,255,255,0.9)';
-    for (const s of stars) {
+    t++;
+    ctx.clearRect(0,0, c.width, c.height);
+
+    // small stars (twinkly)
+    for (const s of small) {
+      s.x += s.vx;
+      s.y += s.vy;
+      s.phase += 0.02 * s.tw;
+      const alpha = Math.max(0, Math.min(1, s.alphaBase * (0.6 + 0.4 * Math.sin(s.phase))));
       ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.globalAlpha = alpha * 0.95;
+      ctx.fillStyle = 'white';
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
       ctx.fill();
-      s.y += (0.15 + s.z * 0.6);      // fall speed
-      if (s.y > c.height) {
-        s.y = -2;
-        s.x = Math.random() * c.width;
+      ctx.globalAlpha = 1;
+
+      // wrap
+      if (s.x < -10) s.x = W()+10;
+      if (s.y > H()+10) s.y = -10;
+    }
+
+    // medium glowy stars
+    for (const m of medium) {
+      m.x += m.vx;
+      m.y += m.vy;
+      const gAlpha = 0.35 + 0.5 * Math.sin(t * m.pulse + (m.x+m.y)*0.0007);
+      ctx.beginPath();
+      ctx.globalAlpha = gAlpha;
+      // soft glow
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = 'rgba(150,170,255,0.6)';
+      ctx.fillStyle = 'rgba(200,220,255,1)';
+      ctx.arc(m.x, m.y, m.r, 0, Math.PI*2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+      ctx.globalAlpha = 1;
+
+      if (m.x < -30) m.x = W()+30;
+      if (m.y > H()+30) m.y = -30;
+    }
+
+    // rare larger sparks (subtle)
+    for (const sp of sparks) {
+      sp.x += sp.vx;
+      sp.y += sp.vy;
+      sp.life++;
+      const a = 0.35 * (1 - (sp.life / sp.maxLife));
+      if (a > 0.02) {
+        ctx.beginPath();
+        ctx.globalAlpha = a;
+        ctx.shadowBlur = 18;
+        ctx.shadowColor = 'rgba(140,100,255,0.6)';
+        ctx.fillStyle = 'rgba(180,160,255,1)';
+        ctx.arc(sp.x, sp.y, sp.r, 0, Math.PI*2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        ctx.globalAlpha = 1;
+      } else {
+        // respawn
+        Object.assign(sp, createSpark());
       }
     }
+
+    // shooting stars (quick)
+    if (Math.random() < SHOOT_CHANCE) spawnShoot();
+    for (let i = shoots.length-1; i >= 0; i--) {
+      const sh = shoots[i];
+      sh.x += sh.vx; sh.y += sh.vy; sh.life++;
+      const prog = sh.life / sh.ttl;
+      ctx.save();
+      ctx.globalAlpha = 1 - prog;
+      ctx.translate(sh.x, sh.y);
+      const ang = Math.atan2(sh.vy, sh.vx);
+      ctx.rotate(ang);
+      // tail
+      const grd = ctx.createLinearGradient(0,0, -sh.len,0);
+      grd.addColorStop(0, 'rgba(255,255,255,0.95)');
+      grd.addColorStop(1, 'rgba(100,140,255,0)');
+      ctx.fillStyle = grd;
+      ctx.fillRect(-sh.len, -1.5, sh.len, 3);
+      ctx.restore();
+      if (sh.life > sh.ttl) shoots.splice(i,1);
+    }
+
     requestAnimationFrame(tick);
   }
+
   tick();
+
+  // Recreate positions on resize
+  window.addEventListener('resize', () => {
+    // gently reset positions to fit new viewport
+    small.forEach(s => { s.x = Math.random()*W(); s.y = Math.random()*H(); });
+    medium.forEach(m => { m.x = Math.random()*W(); m.y = Math.random()*H(); });
+    sparks.forEach(sp => { sp.x = Math.random()*W(); sp.y = Math.random()*H(); sp.life = 0; });
+  }, { passive: true });
+
+  // expose for debugging/tweaks (optional)
+  window.__cloudsiaStarConfig = { small, medium, sparks, shoots };
 })();
-  </script>
+</script>
   </body>
 </html>
